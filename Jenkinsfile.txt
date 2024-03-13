@@ -5,7 +5,7 @@ stages{
     stage('Checkout')
     {
         steps{
-        git branch: 'main', url: 'https://github.com/tanyashiv/Jenkins-pipeline.git'
+        git branch: 'main', URL: 'https://github.com/tanyashiv/SIT223_Task6.2C.git'
         }
     }
     stage('Build')
@@ -20,17 +20,18 @@ stages{
              echo "Performing Unit and Integration Tests using JUnit."
         }
         post{
-            success 
-                {
-                    mail to: 'tanya4850.be22@chitkara.edu.in',
-                    subject: "Success: Unit and Integration Tests",
-                    body: "Great!! This stage is working."
-                }
+            
             failure 
                 {
                     mail to: 'tanya4850.be22@chitkara.edu.in',
                         subject: "Failure: Unit and Integration Tests",
                         body: "Stage is not working. Please investigate and make required alterations."
+                }
+	   success 
+                {
+                    mail to: 'tanya4850.be22@chitkara.edu.in',
+                    subject: "Success: Unit and Integration Tests",
+                    body: "Great!! This stage is working."
                 }
 
         }
@@ -47,17 +48,18 @@ stages{
             echo 'Performing security scan using Snyk.'
         }
         post{
-            success 
-                {
-                    mail to: 'tanya4850.be22@chitkara.edu.in',
-                    subject: "Success: Security Scan",
-                    body: "Great!! This stage is working."
-                }
+            
             failure 
                 {
                     mail to: 'tanya4850.be22@chitkara.edu.in',
                         subject: "Failure: Security Scan",
                         body: "Stage is not working. Please investigate and make required alterations."
+                }
+		success 
+                {
+                    mail to: 'tanya4850.be22@chitkara.edu.in',
+                    subject: "Success: Security Scan",
+                    body: "Great!! This stage is working."
                 }
 
         }
