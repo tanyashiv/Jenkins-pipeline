@@ -1,0 +1,103 @@
+pipeline{
+    
+agent any
+stages{
+    stage('Checkout')
+    {
+        steps{
+        git branch: 'main', URL: 'https://github.com/tanyashiv/SIT223_Task6.2C.git'
+        }
+    }
+    stage('Build')
+    {
+        steps{
+               echo  "Building the code using Maven."
+        }
+    }
+    stage('Unit and Integrations Tests')
+    {
+        steps{
+             echo "Performing Unit and Integration Tests using JUnit."
+        }
+        post{
+            success 
+                {
+                    mail to: 'tanya4850.be22@chitkara.edu.in',
+                    subject: "Success: Unit and Integration Tests",
+                    body: "Great!! This stage is working."
+                }
+            failure 
+                {
+                    mail to: 'tanya4850.be22@chitkara.edu.in',
+                        subject: "Failure: Unit and Integration Tests",
+                        body: "Stage is not working. Please investigate and make required alterations."
+                }
+
+        }
+    }
+    stage('Code Analysis')
+    {
+        steps{
+            echo 'Performing code analysis using SonarQube.'
+        }
+    }
+    stage('Security Scan')
+    {
+        steps{
+            echo 'Performing security scan using Snyk.'
+        }
+        post{
+            success 
+                {
+                    mail to: 'tanya4850.be22@chitkara.edu.in',
+                    subject: "Success: Security Scan",
+                    body: "Great!! This stage is working."
+                }
+            failure 
+                {
+                    mail to: 'tanya4850.be22@chitkara.edu.in',
+                        subject: "Failure: Security Scan",
+                        body: "Stage is not working. Please investigate and make required alterations."
+                }
+
+        }
+        
+    }
+    stage('Deploy To Staging'){
+        steps
+            {
+                echo 'Deploy to staging sever AWS EC2.'
+
+            }
+
+    }
+    stage('Integration Tests on Staging ')
+    {
+        steps{
+             echo 'Run Integration Tests on Staging environment using Selenium.'
+
+        }
+    }
+    stage('Deploy to Production')
+    {
+        steps{
+            echo'Deploy to Production server AWS EC2'
+        }
+    }
+    
+}
+post 
+    {
+        always             
+        {
+
+            mail to: 'tanya4850.be22@chitkara.edu.in',
+                    subject: "Status: ${currentBuild.result}",
+                    body: "Pipeline has been a ${currentBuild.result}."
+
+            
+                
+        }
+    }
+
+}
