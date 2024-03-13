@@ -14,7 +14,7 @@ stages{
                echo  "Building the code using Maven."
         }
     }
-    stage('Unit and Integrations Tests')
+    stage('Unit and Integration Tests')
     {
         steps{
              echo "Performing Unit and Integration Tests using JUnit."
@@ -23,13 +23,13 @@ stages{
             
             failure 
                 {
-                    mail to: 'tanya4850.be22@chitkara.edu.in',
+                    mail to: 'tanyashiv629@gmail.com',
                         subject: "Failure: Unit and Integration Tests",
                         body: "Stage is not working. Please investigate and make required alterations."
                 }
 	   success 
                 {
-                    mail to: 'tanya4850.be22@chitkara.edu.in',
+                    mail to: 'tanyashiv629@gmail.com',
                     subject: "Success: Unit and Integration Tests",
                     body: "Great!! This stage is working."
                 }
@@ -51,13 +51,13 @@ stages{
             
             failure 
                 {
-                    mail to: 'tanya4850.be22@chitkara.edu.in',
+                    mail to: 'tanyashiv629@gmail.com',
                         subject: "Failure: Security Scan",
                         body: "Stage is not working. Please investigate and make required alterations."
                 }
 		success 
                 {
-                    mail to: 'tanya4850.be22@chitkara.edu.in',
+                    mail to: 'tanyashiv629@gmail.com',
                     subject: "Success: Security Scan",
                     body: "Great!! This stage is working."
                 }
@@ -93,7 +93,7 @@ post
         always             
         {
 
-            mail to: 'tanya4850.be22@chitkara.edu.in',
+            mail to: 'tanyashiv629@gmail.com',
                     subject: "Status: ${currentBuild.result}",
                     body: "Pipeline has been a ${currentBuild.result}."
 
