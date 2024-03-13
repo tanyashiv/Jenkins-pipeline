@@ -5,7 +5,7 @@ stages{
     stage('Checkout')
     {
         steps{
-        git branch: 'main', URL: 'https://github.com/tanyashiv/SIT223_Task6.2C.git'
+        git branch: 'main', url: 'https://github.com/tanyashiv/SIT223_Task6.2C.git'
         }
     }
     stage('Build')
