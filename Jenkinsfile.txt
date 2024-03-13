@@ -5,7 +5,7 @@ stages{
     stage('Checkout')
     {
         steps{
-        git branch: 'main', URL: 'https://github.com/tanyashiv/SIT223_Task6.2C.git'
+        git branch: 'main', url: 'https://github.com/tanyashiv/Jenkins-pipeline.git'
         }
     }
     stage('Build')
@@ -25,7 +25,7 @@ stages{
                 {
                     mail to: 'tanyashiv629@gmail.com',
                         subject: "Failure: Unit and Integration Tests",
-                        body: "Stage is not working. Please investigate and make required alterations."
+                        body: "Stage is not working. Please investigate and make the required alterations."
                 }
 	   success 
                 {
@@ -53,7 +53,7 @@ stages{
                 {
                     mail to: 'tanyashiv629@gmail.com',
                         subject: "Failure: Security Scan",
-                        body: "Stage is not working. Please investigate and make required alterations."
+                        body: "Stage is not working. Please investigate and make the required alterations."
                 }
 		success 
                 {
