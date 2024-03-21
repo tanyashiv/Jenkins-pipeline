@@ -7,7 +7,7 @@ stages{
         steps{
         git branch: 'main', url: 'https://github.com/tanyashiv/Jenkins-pipeline.git'
         }
-    } 
+    }
     stage('Build') 
     {
         steps{ 
